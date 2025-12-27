@@ -14,19 +14,35 @@
 <style>
 body { font-family:'Montserrat', Arial, sans-serif; margin:0; color:white; text-align:center; overflow-x:hidden; background:#000; }
 
-/* AI/Tech Animated Lines Background */
-#ai-bg { position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none; overflow:hidden; }
-.line { position:absolute; width:2px; background:rgba(0,255,255,0.3); animation:moveLine 10s linear infinite; }
-@keyframes moveLine { 0% {transform:translateY(-150px);} 100% {transform:translateY(110vh);} }
-
-/* Floating Neon Particles */
-.particle { position:absolute; border-radius:50%; opacity:0.6; animation:floatParticle linear infinite; }
-@keyframes floatParticle { 0% {transform:translateY(100vh);} 100% {transform:translateY(-50px);} }
+/* Right-side vertical menu */
+.top-menu {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 10;
+}
+.top-menu a {
+  padding: 12px 20px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 20px;
+  color: white;
+  background: linear-gradient(45deg,#ff5f6d,#ffc371);
+  text-align: center;
+  transition: all 0.4s ease, transform 0.3s;
+}
+.top-menu a:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px #0ff,0 0 40px #34eb86;
+}
 
 /* Header */
 header { position:relative; z-index:2; padding:50px 20px; }
 header img { width:120px; border-radius:50%; margin-bottom:15px; }
-
 /* Glowing Banner Name */
 .banner-name {
   font-size:3rem;
@@ -35,23 +51,8 @@ header img { width:120px; border-radius:50%; margin-bottom:15px; }
   text-shadow:0 0 5px #0ff,0 0 10px #0ff,0 0 20px #0ff,0 0 40px #0ff;
   animation:glowPulse 2s ease-in-out infinite alternate;
 }
-@keyframes glowPulse {
-  0% { text-shadow:0 0 5px #0ff,0 0 10px #0ff,0 0 20px #0ff,0 0 40px #0ff; }
-  100% { text-shadow:0 0 10px #0ff,0 0 20px #0ff,0 0 30px #0ff,0 0 60px #0ff; }
-}
-
+@keyframes glowPulse { 0% { text-shadow:0 0 5px #0ff,0 0 10px #0ff,0 0 20px #0ff,0 0 40px #0ff; } 100% { text-shadow:0 0 10px #0ff,0 0 20px #0ff,0 0 30px #0ff,0 0 60px #0ff; } }
 header p { font-size:1.2rem; text-shadow:1px 1px 5px rgba(0,0,0,0.6); margin-bottom:20px; }
-
-/* Top Menu */
-.top-menu { display:flex; justify-content:center; margin-top:20px; flex-wrap:wrap; gap:15px; z-index:3; position:relative; }
-.top-menu a { padding:12px 25px; text-decoration:none; font-weight:bold; border-radius:30px; color:white; position:relative; transition: all 0.4s ease, transform 0.3s; background:linear-gradient(45deg,#ff5f6d,#ffc371); box-shadow:0px 5px 15px rgba(0,0,0,0.3);}
-.top-menu a:hover { transform:scale(1.1); animation: glow 1s ease-in-out infinite alternate; }
-@keyframes glow {0%{text-shadow:0 0 5px #fff,0 0 10px #ff5f6d;}50%{text-shadow:0 0 10px #fff,0 0 20px #34eb86;}100%{text-shadow:0 0 15px #fff,0 0 25px #ffc371;}}
-
-/* Hamburger */
-.menu-button { display:none; font-size:1.5rem; background:#ff5f6d; color:white; padding:10px 20px; border-radius:30px; cursor:pointer; margin:15px auto; width:120px; text-align:center; box-shadow:0px 5px 15px rgba(0,0,0,0.3);}
-.menu-button:hover { transform:scale(1.05); }
-@media(max-width:768px){ .top-menu { display:none; flex-direction:column; } .top-menu.active{display:flex;} .menu-button{display:block;} }
 
 /* Sections & Products */
 section { padding:60px 20px; border-radius:20px; margin:30px auto; max-width:900px; background:rgba(0,0,0,0.5); box-shadow:0px 10px 30px rgba(0,0,0,0.5);}
@@ -68,11 +69,7 @@ section { padding:60px 20px; border-radius:20px; margin:30px auto; max-width:900
   position: relative;
   overflow: hidden;
 }
-.product:hover {
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 0 20px #0ff, 0 0 40px #34eb86, 0 0 60px #ff5f6d;
-  border: 2px solid #0ff;
-}
+.product:hover { transform: translateY(-5px) scale(1.05); box-shadow:0 0 20px #0ff,0 0 40px #34eb86,0 0 60px #ff5f6d; border:2px solid #0ff; }
 .product::before {
   content: '';
   position: absolute;
@@ -113,20 +110,17 @@ select { padding:8px 12px; border-radius:10px; border:none; font-size:1rem; marg
   .product { max-width:90%; margin:15px auto; }
   header h1 { font-size:2rem; }
   header p { font-size:1rem; }
+  .top-menu { right:auto; bottom:0; top:auto; flex-direction:row; transform:translateY(0); width:100%; justify-content:center; gap:10px; }
 }
 </style>
 </head>
 <body>
-
-<!-- Animated Background -->
-<div id="ai-bg"></div>
 
 <header>
 <img src="logo.png" alt="Emmy Whyte Logo">
 <div class="banner-name">Emmy Whyte</div>
 <p>Your One-Stop Digital Store – WhatsApp, TikTok & Facebook Accounts</p>
 
-<div class="menu-button" onclick="toggleMenu()">☰ Menu</div>
 <nav class="top-menu" id="topMenu">
 <a href="#whatsapp">WhatsApp</a>
 <a href="#tiktok">TikTok</a>
@@ -142,15 +136,33 @@ select { padding:8px 12px; border-radius:10px; border:none; font-size:1rem; marg
 <h2>📱 WhatsApp Numbers – Europe & Americas</h2>
 <div class="product">
 <img src="whatsapp-icon.png" alt="WhatsApp Icon" class="icon">
-<h3>🇺🇸 United States</h3>
-<a href="https://wa.me/2347078312023" class="buttons">WhatsApp Me</a>
-<a href="mailto:omodaratanemmanuel5@gmail.com" class="buttons">Email Me</a>
-</div>
-<div class="product">
-<img src="whatsapp-icon.png" alt="WhatsApp Icon" class="icon">
-<h3>🇨🇦 Canada</h3>
-<a href="https://wa.me/2347078312023" class="buttons">WhatsApp Me</a>
-<a href="mailto:omodaratanemmanuel5@gmail.com" class="buttons">Email Me</a>
+<label for="whatsapp-country">Select Country:</label>
+<select id="whatsapp-country">
+  <!-- Europe -->
+  <option value="AL">Albania</option><option value="AT">Austria</option>
+  <option value="BE">Belgium</option><option value="BA">Bosnia & Herzegovina</option>
+  <option value="BG">Bulgaria</option><option value="HR">Croatia</option>
+  <option value="CY">Cyprus</option><option value="CZ">Czech Republic</option>
+  <option value="DK">Denmark</option><option value="EE">Estonia</option>
+  <option value="FI">Finland</option><option value="FR">France</option>
+  <option value="DE">Germany</option><option value="GR">Greece</option>
+  <option value="HU">Hungary</option><option value="IE">Ireland</option>
+  <option value="IT">Italy</option><option value="LV">Latvia</option>
+  <option value="LT">Lithuania</option><option value="LU">Luxembourg</option>
+  <option value="MT">Malta</option><option value="NL">Netherlands</option>
+  <option value="NO">Norway</option><option value="PL">Poland</option>
+  <option value="PT">Portugal</option><option value="RO">Romania</option>
+  <option value="SK">Slovakia</option><option value="SI">Slovenia</option>
+  <option value="ES">Spain</option><option value="SE">Sweden</option>
+  <option value="CH">Switzerland</option><option value="GB">United Kingdom</option>
+  <!-- Americas -->
+  <option value="US">United States</option><option value="CA">Canada</option>
+  <option value="MX">Mexico</option><option value="BR">Brazil</option>
+  <option value="AR">Argentina</option><option value="CL">Chile</option>
+  <option value="CO">Colombia</option><option value="PE">Peru</option>
+</select>
+<p>💰 Price may vary – ask always</p>
+<a href="#" id="whatsapp-contact" class="buttons">Contact Me</a>
 </div>
 </section>
 
@@ -161,18 +173,14 @@ select { padding:8px 12px; border-radius:10px; border:none; font-size:1rem; marg
 <img src="tiktok.png" alt="TikTok Account" class="icon">
 <label for="tiktok-country">Select Country:</label>
 <select id="tiktok-country">
-<option value="US">🇺🇸 United States</option>
-<option value="CA">🇨🇦 Canada</option>
-<option value="UK">🇬🇧 United Kingdom</option>
-<option value="DE">🇩🇪 Germany</option>
-<option value="FR">🇫🇷 France</option>
+<option value="US">United States</option><option value="CA">Canada</option>
+<option value="UK">United Kingdom</option><option value="DE">Germany</option>
+<option value="FR">France</option>
 </select>
 <label for="tiktok-price">Select Price:</label>
 <select id="tiktok-price">
-<option value="10">$10</option>
-<option value="9">$9</option>
-<option value="8">$8</option>
-<option value="7">$7</option>
+<option value="10">$10</option><option value="9">$9</option>
+<option value="8">$8</option><option value="7">$7</option>
 <option value="6">$6</option>
 </select>
 <p>💰 Price may vary – ask always</p>
@@ -187,18 +195,14 @@ select { padding:8px 12px; border-radius:10px; border:none; font-size:1rem; marg
 <img src="facebook.png" alt="Facebook Account" class="icon">
 <label for="facebook-country">Select Country:</label>
 <select id="facebook-country">
-<option value="US">🇺🇸 United States</option>
-<option value="CA">🇨🇦 Canada</option>
-<option value="UK">🇬🇧 United Kingdom</option>
-<option value="DE">🇩🇪 Germany</option>
-<option value="FR">🇫🇷 France</option>
+<option value="US">United States</option><option value="CA">Canada</option>
+<option value="UK">United Kingdom</option><option value="DE">Germany</option>
+<option value="FR">France</option>
 </select>
 <label for="facebook-price">Select Price:</label>
 <select id="facebook-price">
-<option value="10">$10</option>
-<option value="9">$9</option>
-<option value="8">$8</option>
-<option value="7">$7</option>
+<option value="10">$10</option><option value="9">$9</option>
+<option value="8">$8</option><option value="7">$7</option>
 <option value="6">$6</option>
 </select>
 <p>💰 Price may vary – ask always</p>
@@ -237,9 +241,6 @@ select { padding:8px 12px; border-radius:10px; border:none; font-size:1rem; marg
 </footer>
 
 <script>
-// Hamburger toggle
-function toggleMenu(){ document.getElementById("topMenu").classList.toggle("active"); }
-
 // Fade-in sections
 const sections = document.querySelectorAll("section");
 const products = document.querySelectorAll(".product");
@@ -247,43 +248,27 @@ const observer = new IntersectionObserver(entries=>{ entries.forEach(entry=>{ if
 sections.forEach(s=>observer.observe(s));
 products.forEach(p=>observer.observe(p));
 
-// Animated AI lines
-const aiBg = document.getElementById('ai-bg');
-for(let i=0;i<30;i++){
-  let line = document.createElement('div');
-  line.classList.add('line');
-  line.style.left = Math.random()*100+'vw';
-  line.style.height = 50 + Math.random()*150+'px';
-  line.style.animationDuration = (5 + Math.random()*10)+'s';
-  aiBg.appendChild(line);
-}
-
-// Floating neon particles
-for(let i=0;i<40;i++){
-  let particle = document.createElement('div');
-  particle.classList.add('particle');
-  particle.style.width = particle.style.height = (5+Math.random()*15)+'px';
-  particle.style.background = `rgba(${Math.floor(Math.random()*255)},${Math.floor(Math.random()*255)},${Math.floor(Math.random()*255)},0.6)`;
-  particle.style.left = Math.random()*100+'vw';
-  particle.style.top = Math.random()*100+'vh';
-  particle.style.animationDuration = (10 + Math.random()*20)+'s';
-  aiBg.appendChild(particle);
-}
+// WhatsApp contact
+document.getElementById("whatsapp-contact").addEventListener("click", ()=>{
+  const country = document.getElementById("whatsapp-country").value;
+  const url = `https://wa.me/2347078312023?text=Hi Emmy, I want a WhatsApp number from ${country}`;
+  window.open(url,"_blank");
+});
 
 // TikTok contact
-document.getElementById("tiktok-contact").addEventListener("click",()=>{
-const country=document.getElementById("tiktok-country").value;
-const price=document.getElementById("tiktok-price").value;
-const url=`https://wa.me/2347078312023?text=Hi Emmy, I want a TikTok account from ${country} for $${price}`;
-window.open(url,"_blank");
+document.getElementById("tiktok-contact").addEventListener("click", ()=>{
+  const country = document.getElementById("tiktok-country").value;
+  const price = document.getElementById("tiktok-price").value;
+  const url = `https://wa.me/2347078312023?text=Hi Emmy, I want a TikTok account from ${country} for $${price}`;
+  window.open(url,"_blank");
 });
 
 // Facebook contact
-document.getElementById("facebook-contact").addEventListener("click",()=>{
-const country=document.getElementById("facebook-country").value;
-const price=document.getElementById("facebook-price").value;
-const url=`https://wa.me/2347078312023?text=Hi Emmy, I want a Facebook account from ${country} for $${price}`;
-window.open(url,"_blank");
+document.getElementById("facebook-contact").addEventListener("click", ()=>{
+  const country = document.getElementById("facebook-country").value;
+  const price = document.getElementById("facebook-price").value;
+  const url = `https://wa.me/2347078312023?text=Hi Emmy, I want a Facebook account from ${country} for $${price}`;
+  window.open(url,"_blank");
 });
 </script>
 
