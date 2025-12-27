@@ -4,95 +4,136 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Emmy Whyte Digital Store</title>
+
+<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- Favicon -->
+<link rel="icon" href="icon.png" type="image/png">
+
 <style>
-/* General Styles */
-body { font-family: 'Montserrat', Arial, sans-serif; margin:0; background:#f0f0f0; color:#333; text-align:center; scroll-behavior: smooth; }
-header { padding:50px 20px; background: linear-gradient(135deg, #6a11cb, #2575fc); background-size:400% 400%; animation: gradientBG 15s ease infinite; color:white; text-shadow:2px 2px 8px rgba(0,0,0,0.6);}
-@keyframes gradientBG {0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+body { font-family:'Montserrat', Arial, sans-serif; margin:0; color:white; text-align:center; overflow-x:hidden; background:#000; }
+
+/* AI/Tech Animated Lines Background */
+#ai-bg { position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none; overflow:hidden; }
+.line { position:absolute; width:2px; background:rgba(0,255,255,0.3); animation:moveLine 10s linear infinite; }
+@keyframes moveLine { 0% {transform:translateY(-150px);} 100% {transform:translateY(110vh);} }
+
+/* Floating Neon Particles */
+.particle { position:absolute; border-radius:50%; opacity:0.6; animation:floatParticle linear infinite; }
+@keyframes floatParticle { 0% {transform:translateY(100vh);} 100% {transform:translateY(-50px);} }
+
+/* Header */
+header { position:relative; z-index:2; padding:50px 20px; }
 header img { width:120px; border-radius:50%; margin-bottom:15px; }
-header h1 { font-size:3rem; margin:0; }
-header p { font-size:1.2rem; margin-top:10px; }
+
+/* Glowing Banner Name */
+.banner-name {
+  font-size:3rem;
+  font-weight:bold;
+  color:#0ff;
+  text-shadow:0 0 5px #0ff,0 0 10px #0ff,0 0 20px #0ff,0 0 40px #0ff;
+  animation:glowPulse 2s ease-in-out infinite alternate;
+}
+@keyframes glowPulse {
+  0% { text-shadow:0 0 5px #0ff,0 0 10px #0ff,0 0 20px #0ff,0 0 40px #0ff; }
+  100% { text-shadow:0 0 10px #0ff,0 0 20px #0ff,0 0 30px #0ff,0 0 60px #0ff; }
+}
+
+header p { font-size:1.2rem; text-shadow:1px 1px 5px rgba(0,0,0,0.6); margin-bottom:20px; }
 
 /* Top Menu */
-.top-menu { display:flex; justify-content:center; margin-top:20px; flex-wrap:wrap; gap:15px; }
-.top-menu a {
-  padding:12px 25px; text-decoration:none; font-weight:bold; border-radius:30px; color:white; position:relative; transition: all 0.4s ease, transform 0.3s;
-  background: linear-gradient(45deg, #ff5f6d, #ffc371); box-shadow:0px 5px 15px rgba(0,0,0,0.3); font-size:1rem; overflow:hidden;
-}
-.top-menu a::after {
-  content:""; position:absolute; left:0; bottom:0; width:100%; height:0%; background: rgba(255,255,255,0.2); transition:0.4s; border-radius:30px;
-}
-.top-menu a:hover::after { height:100%; }
-.top-menu a:hover {
-  transform: translateY(-5px) scale(1.1);
-  box-shadow:0px 10px 25px rgba(0,0,0,0.4);
-  animation: glow 1s ease-in-out infinite alternate;
-}
-@keyframes glow {
-  0%{text-shadow:0 0 5px #fff,0 0 10px #ff5f6d;}
-  50%{text-shadow:0 0 10px #fff,0 0 20px #34eb86;}
-  100%{text-shadow:0 0 15px #fff,0 0 25px #ffc371;}
-}
+.top-menu { display:flex; justify-content:center; margin-top:20px; flex-wrap:wrap; gap:15px; z-index:3; position:relative; }
+.top-menu a { padding:12px 25px; text-decoration:none; font-weight:bold; border-radius:30px; color:white; position:relative; transition: all 0.4s ease, transform 0.3s; background:linear-gradient(45deg,#ff5f6d,#ffc371); box-shadow:0px 5px 15px rgba(0,0,0,0.3);}
+.top-menu a:hover { transform:scale(1.1); animation: glow 1s ease-in-out infinite alternate; }
+@keyframes glow {0%{text-shadow:0 0 5px #fff,0 0 10px #ff5f6d;}50%{text-shadow:0 0 10px #fff,0 0 20px #34eb86;}100%{text-shadow:0 0 15px #fff,0 0 25px #ffc371;}}
 
-/* Sections */
-section { padding:50px 20px; opacity:0; transform: translateY(30px); transition: all 0.6s ease-out; }
-section.visible { opacity:1; transform: translateY(0); }
-section h2 { font-size:2rem; margin-bottom:25px; color:white; text-shadow:2px 2px 8px rgba(0,0,0,0.5); }
+/* Hamburger */
+.menu-button { display:none; font-size:1.5rem; background:#ff5f6d; color:white; padding:10px 20px; border-radius:30px; cursor:pointer; margin:15px auto; width:120px; text-align:center; box-shadow:0px 5px 15px rgba(0,0,0,0.3);}
+.menu-button:hover { transform:scale(1.05); }
+@media(max-width:768px){ .top-menu { display:none; flex-direction:column; } .top-menu.active{display:flex;} .menu-button{display:block;} }
 
-/* Product Cards */
-.product { position:relative; background:white; color:black; border-radius:20px; padding:25px; margin:20px auto; max-width:300px; box-shadow:0px 10px 20px rgba(0,0,0,0.2); text-align:center; transition: transform 0.3s, box-shadow 0.3s; opacity:0; transform: translateY(20px); }
-.product:hover { transform: translateY(-10px) scale(1.03); box-shadow:0px 15px 25px rgba(0,0,0,0.3);}
-.product.visible { opacity:1; transform: translateY(0);}
-.product img.icon { width:50px; margin-bottom:10px; transition: transform 0.3s, filter 0.3s; }
-.product img.icon:hover { transform: scale(1.3) rotate(10deg); filter: drop-shadow(0 0 10px #ffd700); }
-
-/* Hot / New badges */
-.product::before { content:"🔥"; position:absolute; top:10px; right:15px; font-size:1.2rem; animation: bounce 1s infinite alternate; }
-@keyframes bounce { 0%{transform:translateY(0);} 100%{transform:translateY(-10px);} }
+/* Sections & Products */
+section { padding:60px 20px; border-radius:20px; margin:30px auto; max-width:900px; background:rgba(0,0,0,0.5); box-shadow:0px 10px 30px rgba(0,0,0,0.5);}
+.product {
+  background: rgba(0,0,0,0.85);
+  color: white;
+  border-radius: 20px;
+  padding: 25px;
+  margin: 20px auto;
+  max-width: 300px;
+  box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
+  transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+  border: 2px solid rgba(255,255,255,0.1);
+  position: relative;
+  overflow: hidden;
+}
+.product:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 0 20px #0ff, 0 0 40px #34eb86, 0 0 60px #ff5f6d;
+  border: 2px solid #0ff;
+}
+.product::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, #ff5f6d, #ffc371, #34eb86, #0ff);
+  background-size: 400% 400%;
+  opacity: 0.2;
+  z-index: 0;
+  filter: blur(15px);
+  animation: glowRotate 6s linear infinite;
+}
+@keyframes glowRotate {0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); }}
+.product * { position: relative; z-index: 1; }
+.product img.icon { width:50px; margin-bottom:10px; transition:0.3s; }
+.product img.icon:hover { transform:scale(1.3); filter: drop-shadow(0 0 10px #ffd700); }
 
 /* Buttons */
 .buttons { display:inline-block; margin:10px 5px; text-decoration:none; font-weight:bold; padding:10px 20px; border-radius:25px; transition:0.3s; background:linear-gradient(45deg,#ff5f6d,#ffc371); color:white; box-shadow:0px 5px 15px rgba(0,0,0,0.3);}
-.buttons:hover { background: linear-gradient(45deg,#34eb86,#12b28b); color:white; transform: scale(1.05); }
+.buttons:hover { background:linear-gradient(45deg,#34eb86,#12b28b); transform:scale(1.05); }
 
-/* Section colors */
-#whatsapp { background:linear-gradient(135deg, #34eb86, #12b28b); }
-#tiktok { background:linear-gradient(135deg, #ff7e5f, #feb47b); }
-#facebook { background:linear-gradient(135deg, #3b5998, #8b9dc3); }
-#about { background:linear-gradient(135deg,#f7971e,#ffd200);}
-#faq { background:linear-gradient(135deg,#6a11cb,#2575fc);}
-#contact { background:linear-gradient(135deg,#ff5f6d,#ffc371);}
+/* Fade-in sections */
+section { opacity:0; transform: translateY(30px); transition: all 0.6s ease-out; }
+section.visible { opacity:1; transform: translateY(0); }
+.product.visible { opacity:1; transform: translateY(0); }
 
 /* Footer */
-footer { padding:25px; font-size:14px; background:#333; color:white; }
+footer { padding:25px; font-size:14px; background:#111; color:white; margin-top:30px; }
 
+/* Dropdowns */
 label { display:block; margin:10px 0 5px; font-weight:bold; color:white; text-shadow:1px 1px 5px rgba(0,0,0,0.6);}
 select { padding:8px 12px; border-radius:10px; border:none; font-size:1rem; margin-bottom:15px; }
 
 /* Mobile Responsive */
 @media (max-width:768px){
-  .top-menu { flex-direction:column; }
+  .product { max-width:90%; margin:15px auto; }
   header h1 { font-size:2rem; }
   header p { font-size:1rem; }
-  section { padding:40px 15px; }
-  .product { max-width:90%; margin:15px auto; }
 }
 </style>
 </head>
 <body>
 
+<!-- Animated Background -->
+<div id="ai-bg"></div>
+
 <header>
 <img src="logo.png" alt="Emmy Whyte Logo">
-<h1>Emmy Whyte</h1>
+<div class="banner-name">Emmy Whyte</div>
 <p>Your One-Stop Digital Store – WhatsApp, TikTok & Facebook Accounts</p>
 
-<nav class="top-menu">
-<a href="#whatsapp" style="background:#ff5f6d;">WhatsApp</a>
-<a href="#tiktok" style="background:#fcb045;">TikTok</a>
-<a href="#facebook" style="background:#3b5998;">Facebook</a>
-<a href="#about" style="background:#6a11cb;">About Me</a>
-<a href="#faq" style="background:#34eb86;">FAQ</a>
-<a href="#contact" style="background:#ff7e5f;">Contact</a>
+<div class="menu-button" onclick="toggleMenu()">☰ Menu</div>
+<nav class="top-menu" id="topMenu">
+<a href="#whatsapp">WhatsApp</a>
+<a href="#tiktok">TikTok</a>
+<a href="#facebook">Facebook</a>
+<a href="#about">About Me</a>
+<a href="#faq">FAQ</a>
+<a href="#contact">Contact</a>
 </nav>
 </header>
 
@@ -117,7 +158,7 @@ select { padding:8px 12px; border-radius:10px; border:none; font-size:1rem; marg
 <section id="tiktok">
 <h2>🎵 TikTok Accounts – Europe & Americas</h2>
 <div class="product">
-<img src="tiktok-icon.png" alt="TikTok Icon" class="icon">
+<img src="tiktok.png" alt="TikTok Account" class="icon">
 <label for="tiktok-country">Select Country:</label>
 <select id="tiktok-country">
 <option value="US">🇺🇸 United States</option>
@@ -126,7 +167,6 @@ select { padding:8px 12px; border-radius:10px; border:none; font-size:1rem; marg
 <option value="DE">🇩🇪 Germany</option>
 <option value="FR">🇫🇷 France</option>
 </select>
-
 <label for="tiktok-price">Select Price:</label>
 <select id="tiktok-price">
 <option value="10">$10</option>
@@ -135,7 +175,6 @@ select { padding:8px 12px; border-radius:10px; border:none; font-size:1rem; marg
 <option value="7">$7</option>
 <option value="6">$6</option>
 </select>
-
 <p>💰 Price may vary – ask always</p>
 <a href="#" id="tiktok-contact" class="buttons">Contact Me</a>
 </div>
@@ -145,7 +184,7 @@ select { padding:8px 12px; border-radius:10px; border:none; font-size:1rem; marg
 <section id="facebook">
 <h2>📘 Facebook Accounts – Europe & Americas</h2>
 <div class="product">
-<img src="facebook-icon.png" alt="Facebook Icon" class="icon">
+<img src="facebook.png" alt="Facebook Account" class="icon">
 <label for="facebook-country">Select Country:</label>
 <select id="facebook-country">
 <option value="US">🇺🇸 United States</option>
@@ -154,7 +193,6 @@ select { padding:8px 12px; border-radius:10px; border:none; font-size:1rem; marg
 <option value="DE">🇩🇪 Germany</option>
 <option value="FR">🇫🇷 France</option>
 </select>
-
 <label for="facebook-price">Select Price:</label>
 <select id="facebook-price">
 <option value="10">$10</option>
@@ -163,19 +201,18 @@ select { padding:8px 12px; border-radius:10px; border:none; font-size:1rem; marg
 <option value="7">$7</option>
 <option value="6">$6</option>
 </select>
-
 <p>💰 Price may vary – ask always</p>
 <a href="#" id="facebook-contact" class="buttons">Contact Me</a>
 </div>
 </section>
 
-<!-- About Me Section -->
+<!-- About -->
 <section id="about">
 <h2>💖 About Me</h2>
 <p>Hello! I’m Emmy Whyte, your trusted digital store provider. I love helping people get premium TikTok, Facebook, and WhatsApp accounts safely and easily. I’m happily in a relationship with ADESEWA 💕.</p>
 </section>
 
-<!-- FAQ Section -->
+<!-- FAQ -->
 <section id="faq">
 <h2>❓ FAQ</h2>
 <div class="product">
@@ -188,7 +225,7 @@ select { padding:8px 12px; border-radius:10px; border:none; font-size:1rem; marg
 </div>
 </section>
 
-<!-- Contact Section -->
+<!-- Contact -->
 <section id="contact">
 <h2>📩 Contact</h2>
 <p>WhatsApp: <a href="https://wa.me/2347078312023" class="buttons">Chat Now</a></p>
@@ -200,21 +237,38 @@ select { padding:8px 12px; border-radius:10px; border:none; font-size:1rem; marg
 </footer>
 
 <script>
-// Fade-in animation for products
-const allProducts = document.querySelectorAll(".product");
-const observer = new IntersectionObserver(entries=>{
-entries.forEach(entry=>{ if(entry.isIntersecting) entry.target.classList.add("visible"); });
-},{threshold:0.2});
-allProducts.forEach(product=>observer.observe(product));
+// Hamburger toggle
+function toggleMenu(){ document.getElementById("topMenu").classList.toggle("active"); }
 
-// Fade-in slide-up for sections
-const allSections = document.querySelectorAll("section");
-const sectionObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){ entry.target.classList.add("visible"); }
-  });
-},{threshold:0.2});
-allSections.forEach(section => sectionObserver.observe(section));
+// Fade-in sections
+const sections = document.querySelectorAll("section");
+const products = document.querySelectorAll(".product");
+const observer = new IntersectionObserver(entries=>{ entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add("visible"); } }); }, {threshold:0.2});
+sections.forEach(s=>observer.observe(s));
+products.forEach(p=>observer.observe(p));
+
+// Animated AI lines
+const aiBg = document.getElementById('ai-bg');
+for(let i=0;i<30;i++){
+  let line = document.createElement('div');
+  line.classList.add('line');
+  line.style.left = Math.random()*100+'vw';
+  line.style.height = 50 + Math.random()*150+'px';
+  line.style.animationDuration = (5 + Math.random()*10)+'s';
+  aiBg.appendChild(line);
+}
+
+// Floating neon particles
+for(let i=0;i<40;i++){
+  let particle = document.createElement('div');
+  particle.classList.add('particle');
+  particle.style.width = particle.style.height = (5+Math.random()*15)+'px';
+  particle.style.background = `rgba(${Math.floor(Math.random()*255)},${Math.floor(Math.random()*255)},${Math.floor(Math.random()*255)},0.6)`;
+  particle.style.left = Math.random()*100+'vw';
+  particle.style.top = Math.random()*100+'vh';
+  particle.style.animationDuration = (10 + Math.random()*20)+'s';
+  aiBg.appendChild(particle);
+}
 
 // TikTok contact
 document.getElementById("tiktok-contact").addEventListener("click",()=>{
@@ -232,5 +286,6 @@ const url=`https://wa.me/2347078312023?text=Hi Emmy, I want a Facebook account f
 window.open(url,"_blank");
 });
 </script>
+
 </body>
 </html>
