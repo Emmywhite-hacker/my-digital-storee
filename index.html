@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -78,9 +79,7 @@ header img { width: 80px; border-radius: 50%; }
   bottom: 5px;
   transition: 0.3s;
 }
-.nav-menu a:hover::after {
-  width: 100%;
-}
+.nav-menu a:hover::after { width: 100%; }
 .nav-menu a:hover {
   color: #0ff;
   text-shadow: 0 0 10px #0ff, 0 0 20px #34eb86;
@@ -134,7 +133,8 @@ select { padding:8px 12px; border-radius:10px; border:none; font-size:1rem; marg
 @media(max-width:768px){ .nav-menu { top: 60px; right:10px; width:200px; }}
 </style>
 </head>
-<body><canvas id="bg-canvas"></canvas>
+<body>
+<canvas id="bg-canvas"></canvas>
 
 <header>
   <img src="logo.png" alt="Emmy Whyte Logo">
@@ -147,27 +147,25 @@ select { padding:8px 12px; border-radius:10px; border:none; font-size:1rem; marg
     <a href="#about">About Me</a>
     <a href="#contact">Contact</a>
   </nav>
-</header><!-- WhatsApp Section --><section id="whatsapp">
+</header>
+
+<!-- WhatsApp Section -->
+<section id="whatsapp">
 <h2>📱 WhatsApp Numbers – Europe & Americas</h2>
 <div class="product">
 <img src="whatsapp-icon.png" alt="WhatsApp Icon" class="icon">
 <label for="whatsapp-country">Select Country:</label>
 <select id="whatsapp-country">
-  <option value="AL">Albania</option><option value="AT">Austria</option>
-  <option value="BE">Belgium</option><option value="BA">Bosnia & Herzegovina</option>
-  <option value="BG">Bulgaria</option><option value="HR">Croatia</option>
-  <option value="CY">Cyprus</option><option value="CZ">Czech Republic</option>
-  <option value="DK">Denmark</option><option value="EE">Estonia</option>
-  <option value="FI">Finland</option><option value="FR">France</option>
-  <option value="DE">Germany</option><option value="GR">Greece</option>
-  <option value="HU">Hungary</option><option value="IE">Ireland</option>
-  <option value="IT">Italy</option><option value="LV">Latvia</option>
-  <option value="LT">Lithuania</option><option value="LU">Luxembourg</option>
-  <option value="MT">Malta</option><option value="NL">Netherlands</option>
-  <option value="NO">Norway</option><option value="PL">Poland</option>
-  <option value="PT">Portugal</option><option value="RO">Romania</option>
-  <option value="SK">Slovakia</option><option value="SI">Slovenia</option>
-  <option value="ES">Spain</option><option value="SE">Sweden</option>
+  <option value="AL">Albania</option><option value="AT">Austria</option><option value="BE">Belgium</option>
+  <option value="BA">Bosnia & Herzegovina</option><option value="BG">Bulgaria</option><option value="HR">Croatia</option>
+  <option value="CY">Cyprus</option><option value="CZ">Czech Republic</option><option value="DK">Denmark</option>
+  <option value="EE">Estonia</option><option value="FI">Finland</option><option value="FR">France</option>
+  <option value="DE">Germany</option><option value="GR">Greece</option><option value="HU">Hungary</option>
+  <option value="IE">Ireland</option><option value="IT">Italy</option><option value="LV">Latvia</option>
+  <option value="LT">Lithuania</option><option value="LU">Luxembourg</option><option value="MT">Malta</option>
+  <option value="NL">Netherlands</option><option value="NO">Norway</option><option value="PL">Poland</option>
+  <option value="PT">Portugal</option><option value="RO">Romania</option><option value="SK">Slovakia</option>
+  <option value="SI">Slovenia</option><option value="ES">Spain</option><option value="SE">Sweden</option>
   <option value="CH">Switzerland</option><option value="GB">United Kingdom</option>
   <option value="US">United States</option><option value="CA">Canada</option>
   <option value="MX">Mexico</option><option value="BR">Brazil</option>
@@ -177,14 +175,31 @@ select { padding:8px 12px; border-radius:10px; border:none; font-size:1rem; marg
 <p>💰 Price may vary – ask always</p>
 <a href="#" id="whatsapp-contact" class="buttons">Contact Me</a>
 </div>
-</section><!-- TikTok Section --><section id="tiktok">
+</section>
+
+<!-- TikTok Section -->
+<section id="tiktok">
 <h2>🎵 TikTok Accounts – Europe & Americas</h2>
 <div class="product">
 <img src="tiktok.png" alt="TikTok Account" class="icon">
 <label for="tiktok-country">Select Country:</label>
 <select id="tiktok-country">
-  <!-- Countries same as WhatsApp -->
-  <option value="AL">Albania</option> ... <!-- continue with same options -->
+  <!-- Same countries as WhatsApp -->
+  <option value="AL">Albania</option><option value="AT">Austria</option><option value="BE">Belgium</option>
+  <option value="BA">Bosnia & Herzegovina</option><option value="BG">Bulgaria</option><option value="HR">Croatia</option>
+  <option value="CY">Cyprus</option><option value="CZ">Czech Republic</option><option value="DK">Denmark</option>
+  <option value="EE">Estonia</option><option value="FI">Finland</option><option value="FR">France</option>
+  <option value="DE">Germany</option><option value="GR">Greece</option><option value="HU">Hungary</option>
+  <option value="IE">Ireland</option><option value="IT">Italy</option><option value="LV">Latvia</option>
+  <option value="LT">Lithuania</option><option value="LU">Luxembourg</option><option value="MT">Malta</option>
+  <option value="NL">Netherlands</option><option value="NO">Norway</option><option value="PL">Poland</option>
+  <option value="PT">Portugal</option><option value="RO">Romania</option><option value="SK">Slovakia</option>
+  <option value="SI">Slovenia</option><option value="ES">Spain</option><option value="SE">Sweden</option>
+  <option value="CH">Switzerland</option><option value="GB">United Kingdom</option>
+  <option value="US">United States</option><option value="CA">Canada</option>
+  <option value="MX">Mexico</option><option value="BR">Brazil</option>
+  <option value="AR">Argentina</option><option value="CL">Chile</option>
+  <option value="CO">Colombia</option><option value="PE">Peru</option>
 </select>
 <label for="tiktok-price">Select Price:</label>
 <select id="tiktok-price">
@@ -195,13 +210,31 @@ select { padding:8px 12px; border-radius:10px; border:none; font-size:1rem; marg
 <p>💰 Price may vary – ask always</p>
 <a href="#" id="tiktok-contact" class="buttons">Contact Me</a>
 </div>
-</section><!-- Facebook Section --><section id="facebook">
+</section>
+
+<!-- Facebook Section -->
+<section id="facebook">
 <h2>📘 Facebook Accounts – Europe & Americas</h2>
 <div class="product">
 <img src="facebook.png" alt="Facebook Account" class="icon">
 <label for="facebook-country">Select Country:</label>
 <select id="facebook-country">
-  <option value="AL">Albania</option> ... <!-- continue with same options -->
+  <!-- Same countries as WhatsApp -->
+  <option value="AL">Albania</option><option value="AT">Austria</option><option value="BE">Belgium</option>
+  <option value="BA">Bosnia & Herzegovina</option><option value="BG">Bulgaria</option><option value="HR">Croatia</option>
+  <option value="CY">Cyprus</option><option value="CZ">Czech Republic</option><option value="DK">Denmark</option>
+  <option value="EE">Estonia</option><option value="FI">Finland</option><option value="FR">France</option>
+  <option value="DE">Germany</option><option value="GR">Greece</option><option value="HU">Hungary</option>
+  <option value="IE">Ireland</option><option value="IT">Italy</option><option value="LV">Latvia</option>
+  <option value="LT">Lithuania</option><option value="LU">Luxembourg</option><option value="MT">Malta</option>
+  <option value="NL">Netherlands</option><option value="NO">Norway</option><option value="PL">Poland</option>
+  <option value="PT">Portugal</option><option value="RO">Romania</option><option value="SK">Slovakia</option>
+  <option value="SI">Slovenia</option><option value="ES">Spain</option><option value="SE">Sweden</option>
+  <option value="CH">Switzerland</option><option value="GB">United Kingdom</option>
+  <option value="US">United States</option><option value="CA">Canada</option>
+  <option value="MX">Mexico</option><option value="BR">Brazil</option>
+  <option value="AR">Argentina</option><option value="CL">Chile</option>
+  <option value="CO">Colombia</option><option value="PE">Peru</option>
 </select>
 <label for="facebook-price">Select Price:</label>
 <select id="facebook-price">
@@ -212,20 +245,33 @@ select { padding:8px 12px; border-radius:10px; border:none; font-size:1rem; marg
 <p>💰 Price may vary – ask always</p>
 <a href="#" id="facebook-contact" class="buttons">Contact Me</a>
 </div>
-</section><!-- About --><section id="about">
+</section>
+
+<!-- About -->
+<section id="about">
 <h2>💖 About Me</h2>
 <p>Hello! I’m Emmy Whyte, your trusted digital store provider. I love helping people get premium TikTok, Facebook, and WhatsApp accounts safely and easily. I’m happily in a relationship with ADESEWA 💕.</p>
-</section><!-- Contact --><section id="contact">
+</section>
+
+<!-- Contact -->
+<section id="contact">
 <h2>📩 Contact</h2>
 <p>WhatsApp: <a href="https://wa.me/2347078312023" class="buttons">Chat Now</a></p>
 <p>Email: <a href="mailto:omodaratanemmanuel5@gmail.com" class="buttons">Send Email</a></p>
-</section><footer>
+</section>
+
+<footer>
 <p>© 2025 Emmy Whyte Digital Store</p>
-</footer><script>
+</footer>
+
+<script>
+// Menu toggle
 function toggleMenu(){
   const menu = document.getElementById("navMenu");
   menu.style.display = menu.style.display === "flex" ? "none" : "flex";
 }
+
+// Contact buttons
 document.getElementById("whatsapp-contact").addEventListener("click", ()=>{
   const country = document.getElementById("whatsapp-country").value;
   window.open(`https://wa.me/2347078312023?text=Hi Emmy, I want a WhatsApp number from ${country}`,"_blank");
@@ -240,19 +286,48 @@ document.getElementById("facebook-contact").addEventListener("click", ()=>{
   const price = document.getElementById("facebook-price").value;
   window.open(`https://wa.me/2347078312023?text=Hi Emmy, I want a Facebook account from ${country} for $${price}`,"_blank");
 });
+
+// AI/robot tech animated background
 const canvas = document.getElementById("bg-canvas");
 const ctx = canvas.getContext("2d");
 let w,h;
-function resize(){w=canvas.width=window.innerWidth;h=canvas.height=window.innerHeight;}
+function resize(){ w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight; }
 window.addEventListener("resize",resize);
 resize();
-const particles=[];
-for(let i=0;i<150;i++){particles.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-0.5)*1.2,vy:(Math.random()-0.5)*1.2,size:2+Math.random()*3});}
+
+const lines=[];
+for(let i=0;i<150;i++){
+  lines.push({
+    x:Math.random()*w,
+    y:Math.random()*h,
+    length:20+Math.random()*50,
+    angle:Math.random()*Math.PI*2,
+    speed:0.5+Math.random()*1,
+    color:`hsl(${Math.random()*360}, 80%, 50%)`
+  });
+}
+
 function draw(){
-ctx.fillStyle="rgba(0,0,0,0.05)";ctx.fillRect(0,0,w,h);
-ctx.fillStyle="#0ff";
-particles.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fill();});
-requestAnimationFrame(draw);}
+  ctx.fillStyle="rgba(0,0,0,0.1)";
+  ctx.fillRect(0,0,w,h);
+  lines.forEach(line=>{
+    line.x+=Math.cos(line.angle)*line.speed;
+    line.y+=Math.sin(line.angle)*line.speed;
+    if(line.x<0)line.x=w;if(line.x>w)line.x=0;
+    if(line.y<0)line.y=h;if(line.y>h)line.y=0;
+    ctx.strokeStyle=line.color;
+    ctx.lineWidth=1.5;
+    ctx.shadowBlur=8;
+    ctx.shadowColor=line.color;
+    ctx.beginPath();
+    ctx.moveTo(line.x,line.y);
+    ctx.lineTo(line.x+Math.cos(line.angle)*line.length,line.y+Math.sin(line.angle)*line.length);
+    ctx.stroke();
+  });
+  requestAnimationFrame(draw);
+}
 draw();
-</script></body>
-</html>
+</script>
+
+</body>
+  </html>
