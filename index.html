@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 <style>
 body { margin:0; font-family:'Montserrat',sans-serif; color:white; overflow-x:hidden; background:#111; }
+canvas { position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; background:#111; }
 
 /* Header */
 header { position:relative; z-index:2; padding:20px 30px; display:flex; justify-content:space-between; align-items:center; background:rgba(0,0,0,0.6); border-bottom:2px solid #0ff; flex-wrap:wrap; }
@@ -32,10 +33,12 @@ footer { padding:25px; font-size:14px; background:#111; color:white; margin-top:
 </head>
 <body>
 
+<canvas id="bg-canvas"></canvas>
+
 <header>
   <img src="logo.png" alt="Emmy Whyte Logo">
   <div class="banner-name">Emmy Whyte</div>
-  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  <div class="menu-btn" id="menu-btn">☰</div>
   <nav class="nav-menu" id="navMenu">
     <a href="#whatsapp">WhatsApp</a>
     <a href="#tiktok">TikTok</a>
@@ -53,7 +56,7 @@ footer { padding:25px; font-size:14px; background:#111; color:white; margin-top:
 <img src="whatsapp-icon.png" alt="WhatsApp Icon" class="icon">
 <label for="whatsapp-country">Select Country:</label>
 <select id="whatsapp-country">
-<!-- full Europe & Americas countries -->
+<!-- full countries list -->
 <option value="AL">Albania</option><option value="AT">Austria</option><option value="BE">Belgium</option><option value="BA">Bosnia & Herzegovina</option>
 <option value="BG">Bulgaria</option><option value="HR">Croatia</option><option value="CY">Cyprus</option><option value="CZ">Czech Republic</option>
 <option value="DK">Denmark</option><option value="EE">Estonia</option><option value="FI">Finland</option><option value="FR">France</option>
@@ -77,6 +80,7 @@ footer { padding:25px; font-size:14px; background:#111; color:white; margin-top:
 <img src="tiktok.png" alt="TikTok Account" class="icon">
 <label for="tiktok-country">Select Country:</label>
 <select id="tiktok-country">
+<!-- same countries -->
 <option value="AL">Albania</option><option value="AT">Austria</option><option value="BE">Belgium</option><option value="BA">Bosnia & Herzegovina</option>
 <option value="BG">Bulgaria</option><option value="HR">Croatia</option><option value="CY">Cyprus</option><option value="CZ">Czech Republic</option>
 <option value="DK">Denmark</option><option value="EE">Estonia</option><option value="FI">Finland</option><option value="FR">France</option>
@@ -108,6 +112,7 @@ footer { padding:25px; font-size:14px; background:#111; color:white; margin-top:
 <img src="facebook.png" alt="Facebook Account" class="icon">
 <label for="facebook-country">Select Country:</label>
 <select id="facebook-country">
+<!-- same countries -->
 <option value="AL">Albania</option><option value="AT">Austria</option><option value="BE">Belgium</option><option value="BA">Bosnia & Herzegovina</option>
 <option value="BG">Bulgaria</option><option value="HR">Croatia</option><option value="CY">Cyprus</option><option value="CZ">Czech Republic</option>
 <option value="DK">Denmark</option><option value="EE">Estonia</option><option value="FI">Finland</option><option value="FR">France</option>
@@ -150,8 +155,13 @@ footer { padding:25px; font-size:14px; background:#111; color:white; margin-top:
 </footer>
 
 <script>
+// Menu toggle with proper in/out
+let menuOpen=false;
 const navMenu=document.getElementById("navMenu");
-function toggleMenu(){ navMenu.style.right = navMenu.style.right==="0px"?"-300px":"0px"; }
+document.getElementById("menu-btn").addEventListener("click",()=>{
+  navMenu.style.right=menuOpen?"-300px":"0px";
+  menuOpen=!menuOpen;
+});
 
 // Contact buttons
 document.getElementById("whatsapp-contact").addEventListener("click",()=>{
@@ -168,7 +178,19 @@ document.getElementById("facebook-contact").addEventListener("click",()=>{
   const years=document.getElementById("facebook-years").value;
   window.open(`https://wa.me/2347078312023?text=Hi Emmy, I want a Facebook account from ${country} for years ${years}`,"_blank");
 });
+
+// Particle background
+const canvas=document.getElementById("bg-canvas");
+const ctx=canvas.getContext("2d");
+let w,h;
+function resize(){w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight;}
+window.addEventListener("resize",resize);
+resize();
+const particles=[];
+for(let i=0;i<150;i++){particles.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-0.5)*1.2,vy:(Math.random()-0.5)*1.2,size:2+Math.random()*3});}
+function draw(){ctx.fillStyle="rgba(0,0,0,0.05)";ctx.fillRect(0,0,w,h);ctx.fillStyle="#0ff"; particles.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fill();}); requestAnimationFrame(draw);}
+draw();
 </script>
 
 </body>
-</html>
+  </html>
