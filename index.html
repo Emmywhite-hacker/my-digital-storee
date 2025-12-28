@@ -7,30 +7,33 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 <style>
 body { margin:0; font-family:'Montserrat',sans-serif; color:white; overflow-x:hidden; background:#111; }
+
 /* Header */
 header { position:relative; z-index:2; padding:20px 30px; display:flex; justify-content:space-between; align-items:center; background:rgba(0,0,0,0.6); border-bottom:2px solid #0ff; flex-wrap:wrap; }
-.banner-name { font-size:2.2rem; font-weight:bold; color:#0ff; text-shadow:0 0 10px #0ff; margin-left:15px; }
+header img { width:80px; border-radius:50%; }
+.banner-name { font-size:2rem; font-weight:bold; color:#0ff; text-shadow:0 0 10px #0ff; margin-left:15px; }
 .menu-btn { font-size:2rem; cursor:pointer; user-select:none; }
-.nav-menu { position:fixed; top:0; right:-300px; width:250px; height:100%; background:rgba(0,0,0,0.95); border-radius:0; display:flex; flex-direction:column; padding:20px; transition:right 0.4s ease; z-index:10; }
-.nav-menu a { padding:12px 0; text-decoration:none; color:white; font-weight:bold; display:block; transition:all 0.3s ease; border-bottom:1px solid rgba(255,255,255,0.1);}
+.nav-menu { position:fixed; top:0; right:-300px; width:260px; height:100%; background:rgba(0,0,0,0.95); display:flex; flex-direction:column; padding:20px; transition:right 0.4s ease; z-index:10; }
+.nav-menu a { padding:12px 0; text-decoration:none; color:white; font-weight:bold; display:block; border-bottom:1px solid rgba(255,255,255,0.1);}
 .nav-menu a:hover { color:#0ff; }
 
 /* Sections */
 section { padding:60px 20px; margin:20px auto; max-width:900px; background:rgba(0,0,0,0.5); border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.5); position:relative; overflow:hidden; }
-.product { background:rgba(0,0,0,0.85); border-radius:15px; padding:20px; margin:20px auto; max-width:320px; }
+.product { background:rgba(0,0,0,0.85); border-radius:15px; padding:20px; margin:20px auto; max-width:320px; text-align:center; }
 .product img.icon { width:50px; margin-bottom:10px; }
 .buttons { background:#0ff; color:black; font-weight:bold; padding:10px 20px; border-radius:25px; display:inline-block; margin-top:10px; text-decoration:none; }
 .buttons:hover { background:#34eb86; }
 
+select { padding:8px 12px; border-radius:10px; border:none; font-size:1rem; margin-bottom:15px; width:100%; }
+
 /* Footer */
 footer { padding:25px; font-size:14px; background:#111; color:white; margin-top:30px; }
-
-select { padding:8px 12px; border-radius:10px; border:none; font-size:1rem; margin-bottom:15px; width:100%; }
 </style>
 </head>
 <body>
 
 <header>
+  <img src="logo.png" alt="Emmy Whyte Logo">
   <div class="banner-name">Emmy Whyte</div>
   <div class="menu-btn" onclick="toggleMenu()">☰</div>
   <nav class="nav-menu" id="navMenu">
@@ -50,6 +53,7 @@ select { padding:8px 12px; border-radius:10px; border:none; font-size:1rem; marg
 <img src="whatsapp-icon.png" alt="WhatsApp Icon" class="icon">
 <label for="whatsapp-country">Select Country:</label>
 <select id="whatsapp-country">
+<!-- full Europe & Americas countries -->
 <option value="AL">Albania</option><option value="AT">Austria</option><option value="BE">Belgium</option><option value="BA">Bosnia & Herzegovina</option>
 <option value="BG">Bulgaria</option><option value="HR">Croatia</option><option value="CY">Cyprus</option><option value="CZ">Czech Republic</option>
 <option value="DK">Denmark</option><option value="EE">Estonia</option><option value="FI">Finland</option><option value="FR">France</option>
@@ -73,7 +77,6 @@ select { padding:8px 12px; border-radius:10px; border:none; font-size:1rem; marg
 <img src="tiktok.png" alt="TikTok Account" class="icon">
 <label for="tiktok-country">Select Country:</label>
 <select id="tiktok-country">
-<!-- same countries as WhatsApp -->
 <option value="AL">Albania</option><option value="AT">Austria</option><option value="BE">Belgium</option><option value="BA">Bosnia & Herzegovina</option>
 <option value="BG">Bulgaria</option><option value="HR">Croatia</option><option value="CY">Cyprus</option><option value="CZ">Czech Republic</option>
 <option value="DK">Denmark</option><option value="EE">Estonia</option><option value="FI">Finland</option><option value="FR">France</option>
@@ -93,7 +96,7 @@ select { padding:8px 12px; border-radius:10px; border:none; font-size:1rem; marg
 <option value="2023-2025">2023-2025</option>
 <option value="2024-2025">2024-2025</option>
 </select>
-<p>💰 Price will increase with longer years</p>
+<p>💰 Price increases with longer years</p>
 <a href="#" id="tiktok-contact" class="buttons">Contact Me</a>
 </div>
 </section>
@@ -105,7 +108,6 @@ select { padding:8px 12px; border-radius:10px; border:none; font-size:1rem; marg
 <img src="facebook.png" alt="Facebook Account" class="icon">
 <label for="facebook-country">Select Country:</label>
 <select id="facebook-country">
-<!-- same countries as WhatsApp -->
 <option value="AL">Albania</option><option value="AT">Austria</option><option value="BE">Belgium</option><option value="BA">Bosnia & Herzegovina</option>
 <option value="BG">Bulgaria</option><option value="HR">Croatia</option><option value="CY">Cyprus</option><option value="CZ">Czech Republic</option>
 <option value="DK">Denmark</option><option value="EE">Estonia</option><option value="FI">Finland</option><option value="FR">France</option>
@@ -125,7 +127,7 @@ select { padding:8px 12px; border-radius:10px; border:none; font-size:1rem; marg
 <option value="2023-2025">2023-2025</option>
 <option value="2024-2025">2024-2025</option>
 </select>
-<p>💰 Price will increase with longer years</p>
+<p>💰 Price increases with longer years</p>
 <a href="#" id="facebook-contact" class="buttons">Contact Me</a>
 </div>
 </section>
@@ -169,4 +171,4 @@ document.getElementById("facebook-contact").addEventListener("click",()=>{
 </script>
 
 </body>
-  </html>
+</html>
