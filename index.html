@@ -5,144 +5,138 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Emmy Whyte Digital Store</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-<link rel="icon" href="icon.png" type="image/png">
 <style>
-body { margin:0; font-family:'Montserrat',sans-serif; color:#f0f0f0; overflow-x:hidden; background:#111; }
-#bg-canvas { position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; background:#111; }
-
+body { margin:0; font-family:'Montserrat',sans-serif; color:white; overflow-x:hidden; background:#111; }
 /* Header */
-header { position:relative; z-index:2; padding:20px 30px; display:flex; justify-content:space-between; align-items:center; background:rgba(20,20,20,0.85); border-bottom:1px solid #555; flex-wrap:wrap; }
-header img { width:70px; border-radius:50%; }
-.banner-name { font-size:2rem; font-weight:bold; color:#a8dadc; text-shadow:0 0 5px #a8dadc; margin-left:15px; }
+header { position:relative; z-index:2; padding:20px 30px; display:flex; justify-content:space-between; align-items:center; background:rgba(0,0,0,0.6); border-bottom:2px solid #0ff; flex-wrap:wrap; }
+.banner-name { font-size:2.2rem; font-weight:bold; color:#0ff; text-shadow:0 0 10px #0ff; margin-left:15px; }
+.menu-btn { font-size:2rem; cursor:pointer; user-select:none; }
+.nav-menu { position:fixed; top:0; right:-300px; width:250px; height:100%; background:rgba(0,0,0,0.95); border-radius:0; display:flex; flex-direction:column; padding:20px; transition:right 0.4s ease; z-index:10; }
+.nav-menu a { padding:12px 0; text-decoration:none; color:white; font-weight:bold; display:block; transition:all 0.3s ease; border-bottom:1px solid rgba(255,255,255,0.1);}
+.nav-menu a:hover { color:#0ff; }
 
-.menu-btn { font-size:2rem; cursor:pointer; user-select:none; color:#f0f0f0; }
-.nav-menu { position:fixed; top:0; right:-280px; width:260px; height:100vh; background:rgba(30,30,30,0.95); border-radius:15px 0 0 15px; display:flex; flex-direction:column; padding-top:80px; z-index:10; transition:right 0.4s ease; }
-.nav-menu a { padding:12px 25px; text-decoration:none; color:#f0f0f0; font-weight:bold; display:block; transition:all 0.3s ease; }
-.nav-menu a:hover { color:#a8dadc; }
-.nav-menu.active { right:0; }
+/* Sections */
+section { padding:60px 20px; margin:20px auto; max-width:900px; background:rgba(0,0,0,0.5); border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,0.5); position:relative; overflow:hidden; }
+.product { background:rgba(0,0,0,0.85); border-radius:15px; padding:20px; margin:20px auto; max-width:320px; }
+.product img.icon { width:50px; margin-bottom:10px; }
+.buttons { background:#0ff; color:black; font-weight:bold; padding:10px 20px; border-radius:25px; display:inline-block; margin-top:10px; text-decoration:none; }
+.buttons:hover { background:#34eb86; }
 
-section { opacity:0; transform:translateY(30px); padding:60px 20px; margin:20px auto; max-width:900px; background:rgba(25,25,25,0.85); border-radius:15px; box-shadow:0 8px 25px rgba(0,0,0,0.4); transition:all 1s ease; }
-section.visible { opacity:1; transform:translateY(0); }
+/* Footer */
+footer { padding:25px; font-size:14px; background:#111; color:white; margin-top:30px; }
 
-.product { background:rgba(35,35,35,0.85); border-radius:15px; padding:20px; margin:20px auto; max-width:300px; position:relative; transition:transform 0.3s, box-shadow 0.3s; border:1px solid rgba(255,255,255,0.1);}
-.product:hover { transform:translateY(-3px); box-shadow:0 0 12px rgba(168,218,220,0.4); }
-.product img.icon { width:50px; margin-bottom:10px; transition:0.3s; }
-.product img.icon:hover { transform:scale(1.15); }
-
-.buttons { background:linear-gradient(135deg,#457b9d,#a8dadc); color:#1d3557; font-weight:bold; padding:10px 20px; border-radius:20px; display:inline-block; transition:transform 0.3s, box-shadow 0.3s; text-decoration:none; }
-.buttons:hover { transform:scale(1.05); box-shadow:0 0 10px rgba(168,218,220,0.5); }
-
-footer { padding:25px; font-size:14px; background:#1c1c1c; color:#ccc; margin-top:30px; text-align:center; }
-
-label { display:block; margin:10px 0 5px; font-weight:bold; color:#f0f0f0; }
-select { padding:8px 12px; border-radius:8px; border:none; font-size:1rem; margin-bottom:15px; background:#2a2a2a; color:#f0f0f0; }
-
+select { padding:8px 12px; border-radius:10px; border:none; font-size:1rem; margin-bottom:15px; width:100%; }
 </style>
 </head>
 <body>
-<canvas id="bg-canvas"></canvas>
 
 <header>
-  <img src="logo.png" alt="Emmy Whyte Logo">
   <div class="banner-name">Emmy Whyte</div>
   <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  <nav class="nav-menu" id="navMenu">
+    <a href="#whatsapp">WhatsApp</a>
+    <a href="#tiktok">TikTok</a>
+    <a href="#facebook">Facebook</a>
+    <a href="#signup">Sign-Up</a>
+    <a href="#about">About Me</a>
+    <a href="#contact">Contact</a>
+  </nav>
 </header>
 
-<nav class="nav-menu" id="navMenu">
-  <a href="#whatsapp">WhatsApp</a>
-  <a href="#tiktok">TikTok</a>
-  <a href="#facebook">Facebook</a>
-  <a href="#signup">Sign-Up</a>
-  <a href="#about">About Me</a>
-  <a href="#contact">Contact</a>
-</nav>
-
-<!-- WhatsApp -->
+<!-- WhatsApp Section -->
 <section id="whatsapp">
 <h2>📱 WhatsApp Numbers – Europe & Americas</h2>
 <div class="product">
 <img src="whatsapp-icon.png" alt="WhatsApp Icon" class="icon">
 <label for="whatsapp-country">Select Country:</label>
 <select id="whatsapp-country">
-  <!-- Countries list Europe & Americas -->
-  <option value="AL">Albania</option><option value="AT">Austria</option><option value="BE">Belgium</option><option value="BA">Bosnia & Herzegovina</option>
-  <option value="BG">Bulgaria</option><option value="HR">Croatia</option><option value="CY">Cyprus</option><option value="CZ">Czech Republic</option>
-  <option value="DK">Denmark</option><option value="EE">Estonia</option><option value="FI">Finland</option><option value="FR">France</option>
-  <option value="DE">Germany</option><option value="GR">Greece</option><option value="HU">Hungary</option><option value="IE">Ireland</option>
-  <option value="IT">Italy</option><option value="LV">Latvia</option><option value="LT">Lithuania</option><option value="LU">Luxembourg</option>
-  <option value="MT">Malta</option><option value="NL">Netherlands</option><option value="NO">Norway</option><option value="PL">Poland</option>
-  <option value="PT">Portugal</option><option value="RO">Romania</option><option value="SK">Slovakia</option><option value="SI">Slovenia</option>
-  <option value="ES">Spain</option><option value="SE">Sweden</option><option value="CH">Switzerland</option><option value="GB">United Kingdom</option>
-  <option value="US">United States</option><option value="CA">Canada</option><option value="MX">Mexico</option><option value="BR">Brazil</option>
-  <option value="AR">Argentina</option><option value="CL">Chile</option><option value="CO">Colombia</option><option value="PE">Peru</option>
+<option value="AL">Albania</option><option value="AT">Austria</option><option value="BE">Belgium</option><option value="BA">Bosnia & Herzegovina</option>
+<option value="BG">Bulgaria</option><option value="HR">Croatia</option><option value="CY">Cyprus</option><option value="CZ">Czech Republic</option>
+<option value="DK">Denmark</option><option value="EE">Estonia</option><option value="FI">Finland</option><option value="FR">France</option>
+<option value="DE">Germany</option><option value="GR">Greece</option><option value="HU">Hungary</option><option value="IE">Ireland</option>
+<option value="IT">Italy</option><option value="LV">Latvia</option><option value="LT">Lithuania</option><option value="LU">Luxembourg</option>
+<option value="MT">Malta</option><option value="NL">Netherlands</option><option value="NO">Norway</option><option value="PL">Poland</option>
+<option value="PT">Portugal</option><option value="RO">Romania</option><option value="SK">Slovakia</option><option value="SI">Slovenia</option>
+<option value="ES">Spain</option><option value="SE">Sweden</option><option value="CH">Switzerland</option><option value="GB">United Kingdom</option>
+<option value="US">United States</option><option value="CA">Canada</option><option value="MX">Mexico</option><option value="BR">Brazil</option>
+<option value="AR">Argentina</option><option value="CL">Chile</option><option value="CO">Colombia</option><option value="PE">Peru</option>
 </select>
 <p>💰 Price may vary – ask always</p>
 <a href="#" id="whatsapp-contact" class="buttons">Contact Me</a>
 </div>
 </section>
 
-<!-- TikTok -->
+<!-- TikTok Section -->
 <section id="tiktok">
 <h2>🎵 TikTok Accounts – Europe & Americas</h2>
 <div class="product">
 <img src="tiktok.png" alt="TikTok Account" class="icon">
 <label for="tiktok-country">Select Country:</label>
 <select id="tiktok-country">
-  <!-- Countries list Europe & Americas -->
-  <option value="AL">Albania</option><option value="AT">Austria</option><option value="BE">Belgium</option><option value="BA">Bosnia & Herzegovina</option>
-  <option value="BG">Bulgaria</option><option value="HR">Croatia</option><option value="CY">Cyprus</option><option value="CZ">Czech Republic</option>
-  <option value="DK">Denmark</option><option value="EE">Estonia</option><option value="FI">Finland</option><option value="FR">France</option>
-  <option value="DE">Germany</option><option value="GR">Greece</option><option value="HU">Hungary</option><option value="IE">Ireland</option>
-  <option value="IT">Italy</option><option value="LV">Latvia</option><option value="LT">Lithuania</option><option value="LU">Luxembourg</option>
-  <option value="MT">Malta</option><option value="NL">Netherlands</option><option value="NO">Norway</option><option value="PL">Poland</option>
-  <option value="PT">Portugal</option><option value="RO">Romania</option><option value="SK">Slovakia</option><option value="SI">Slovenia</option>
-  <option value="ES">Spain</option><option value="SE">Sweden</option><option value="CH">Switzerland</option><option value="GB">United Kingdom</option>
-  <option value="US">United States</option><option value="CA">Canada</option><option value="MX">Mexico</option><option value="BR">Brazil</option>
-  <option value="AR">Argentina</option><option value="CL">Chile</option><option value="CO">Colombia</option><option value="PE">Peru</option>
+<!-- same countries as WhatsApp -->
+<option value="AL">Albania</option><option value="AT">Austria</option><option value="BE">Belgium</option><option value="BA">Bosnia & Herzegovina</option>
+<option value="BG">Bulgaria</option><option value="HR">Croatia</option><option value="CY">Cyprus</option><option value="CZ">Czech Republic</option>
+<option value="DK">Denmark</option><option value="EE">Estonia</option><option value="FI">Finland</option><option value="FR">France</option>
+<option value="DE">Germany</option><option value="GR">Greece</option><option value="HU">Hungary</option><option value="IE">Ireland</option>
+<option value="IT">Italy</option><option value="LV">Latvia</option><option value="LT">Lithuania</option><option value="LU">Luxembourg</option>
+<option value="MT">Malta</option><option value="NL">Netherlands</option><option value="NO">Norway</option><option value="PL">Poland</option>
+<option value="PT">Portugal</option><option value="RO">Romania</option><option value="SK">Slovakia</option><option value="SI">Slovenia</option>
+<option value="ES">Spain</option><option value="SE">Sweden</option><option value="CH">Switzerland</option><option value="GB">United Kingdom</option>
+<option value="US">United States</option><option value="CA">Canada</option><option value="MX">Mexico</option><option value="BR">Brazil</option>
+<option value="AR">Argentina</option><option value="CL">Chile</option><option value="CO">Colombia</option><option value="PE">Peru</option>
 </select>
-<label for="tiktok-price">Select Price:</label>
-<select id="tiktok-price">
-<option value="10">$10</option><option value="9">$9</option><option value="8">$8</option><option value="7">$7</option><option value="6">$6</option>
+<label for="tiktok-years">Select Years:</label>
+<select id="tiktok-years">
+<option value="2020-2025">2020-2025</option>
+<option value="2021-2025">2021-2025</option>
+<option value="2022-2025">2022-2025</option>
+<option value="2023-2025">2023-2025</option>
+<option value="2024-2025">2024-2025</option>
 </select>
-<p>💰 Price may vary – ask always</p>
+<p>💰 Price will increase with longer years</p>
 <a href="#" id="tiktok-contact" class="buttons">Contact Me</a>
 </div>
 </section>
 
-<!-- Facebook -->
+<!-- Facebook Section -->
 <section id="facebook">
 <h2>📘 Facebook Accounts – Europe & Americas</h2>
 <div class="product">
 <img src="facebook.png" alt="Facebook Account" class="icon">
 <label for="facebook-country">Select Country:</label>
 <select id="facebook-country">
-  <!-- Countries list Europe & Americas -->
-  <option value="AL">Albania</option><option value="AT">Austria</option><option value="BE">Belgium</option><option value="BA">Bosnia & Herzegovina</option>
-  <option value="BG">Bulgaria</option><option value="HR">Croatia</option><option value="CY">Cyprus</option><option value="CZ">Czech Republic</option>
-  <option value="DK">Denmark</option><option value="EE">Estonia</option><option value="FI">Finland</option><option value="FR">France</option>
-  <option value="DE">Germany</option><option value="GR">Greece</option><option value="HU">Hungary</option><option value="IE">Ireland</option>
-  <option value="IT">Italy</option><option value="LV">Latvia</option><option value="LT">Lithuania</option><option value="LU">Luxembourg</option>
-  <option value="MT">Malta</option><option value="NL">Netherlands</option><option value="NO">Norway</option><option value="PL">Poland</option>
-  <option value="PT">Portugal</option><option value="RO">Romania</option><option value="SK">Slovakia</option><option value="SI">Slovenia</option>
-  <option value="ES">Spain</option><option value="SE">Sweden</option><option value="CH">Switzerland</option><option value="GB">United Kingdom</option>
-  <option value="US">United States</option><option value="CA">Canada</option><option value="MX">Mexico</option><option value="BR">Brazil</option>
-  <option value="AR">Argentina</option><option value="CL">Chile</option><option value="CO">Colombia</option><option value="PE">Peru</option>
+<!-- same countries as WhatsApp -->
+<option value="AL">Albania</option><option value="AT">Austria</option><option value="BE">Belgium</option><option value="BA">Bosnia & Herzegovina</option>
+<option value="BG">Bulgaria</option><option value="HR">Croatia</option><option value="CY">Cyprus</option><option value="CZ">Czech Republic</option>
+<option value="DK">Denmark</option><option value="EE">Estonia</option><option value="FI">Finland</option><option value="FR">France</option>
+<option value="DE">Germany</option><option value="GR">Greece</option><option value="HU">Hungary</option><option value="IE">Ireland</option>
+<option value="IT">Italy</option><option value="LV">Latvia</option><option value="LT">Lithuania</option><option value="LU">Luxembourg</option>
+<option value="MT">Malta</option><option value="NL">Netherlands</option><option value="NO">Norway</option><option value="PL">Poland</option>
+<option value="PT">Portugal</option><option value="RO">Romania</option><option value="SK">Slovakia</option><option value="SI">Slovenia</option>
+<option value="ES">Spain</option><option value="SE">Sweden</option><option value="CH">Switzerland</option><option value="GB">United Kingdom</option>
+<option value="US">United States</option><option value="CA">Canada</option><option value="MX">Mexico</option><option value="BR">Brazil</option>
+<option value="AR">Argentina</option><option value="CL">Chile</option><option value="CO">Colombia</option><option value="PE">Peru</option>
 </select>
-<label for="facebook-price">Select Price:</label>
-<select id="facebook-price">
-<option value="10">$10</option><option value="9">$9</option><option value="8">$8</option><option value="7">$7</option><option value="6">$6</option>
+<label for="facebook-years">Select Years:</label>
+<select id="facebook-years">
+<option value="2020-2025">2020-2025</option>
+<option value="2021-2025">2021-2025</option>
+<option value="2022-2025">2022-2025</option>
+<option value="2023-2025">2023-2025</option>
+<option value="2024-2025">2024-2025</option>
 </select>
-<p>💰 Price may vary – ask always</p>
+<p>💰 Price will increase with longer years</p>
 <a href="#" id="facebook-contact" class="buttons">Contact Me</a>
 </div>
 </section>
 
-<!-- About & Contact -->
+<!-- About Me -->
 <section id="about">
 <h2>💖 About Me</h2>
-<p>Hello! I’m Emmy Whyte, your trusted digital store provider. I love helping people get premium TikTok, Facebook, and WhatsApp accounts safely and easily. I’m happily in a relationship with ADESEWA 💕.</p>
+<p>Hello! I’m Emmy Whyte, your trusted digital store provider. I love helping people get premium TikTok, Facebook, and WhatsApp accounts safely and easily. HAPPILY IN A RELATIONSHIP WITH ADESEWA 🤭🌹.</p>
 </section>
 
+<!-- Contact -->
 <section id="contact">
 <h2>📩 Contact</h2>
 <p>WhatsApp: <a href="https://wa.me/2347078312023" class="buttons">Chat Now</a></p>
@@ -154,11 +148,8 @@ select { padding:8px 12px; border-radius:8px; border:none; font-size:1rem; margi
 </footer>
 
 <script>
-// Menu toggle
-function toggleMenu(){
-  const menu=document.getElementById("navMenu");
-  menu.classList.toggle("active");
-}
+const navMenu=document.getElementById("navMenu");
+function toggleMenu(){ navMenu.style.right = navMenu.style.right==="0px"?"-300px":"0px"; }
 
 // Contact buttons
 document.getElementById("whatsapp-contact").addEventListener("click",()=>{
@@ -167,35 +158,15 @@ document.getElementById("whatsapp-contact").addEventListener("click",()=>{
 });
 document.getElementById("tiktok-contact").addEventListener("click",()=>{
   const country=document.getElementById("tiktok-country").value;
-  const price=document.getElementById("tiktok-price").value;
-  window.open(`https://wa.me/2347078312023?text=Hi Emmy, I want a TikTok account from ${country} for $${price}`,"_blank");
+  const years=document.getElementById("tiktok-years").value;
+  window.open(`https://wa.me/2347078312023?text=Hi Emmy, I want a TikTok account from ${country} for years ${years}`,"_blank");
 });
 document.getElementById("facebook-contact").addEventListener("click",()=>{
   const country=document.getElementById("facebook-country").value;
-  const price=document.getElementById("facebook-price").value;
-  window.open(`https://wa.me/2347078312023?text=Hi Emmy, I want a Facebook account from ${country} for $${price}`,"_blank");
+  const years=document.getElementById("facebook-years").value;
+  window.open(`https://wa.me/2347078312023?text=Hi Emmy, I want a Facebook account from ${country} for years ${years}`,"_blank");
 });
-
-// Scroll reveal
-const sections=document.querySelectorAll("section");
-window.addEventListener("scroll",()=>{
-  sections.forEach(sec=>{
-    const rect=sec.getBoundingClientRect();
-    if(rect.top<window.innerHeight-100){ sec.classList.add("visible"); }
-  });
-});
-
-// Particle background
-const canvas=document.getElementById("bg-canvas");
-const ctx=canvas.getContext("2d");
-let w,h;
-function resize(){w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight;}
-window.addEventListener("resize",resize);
-resize();
-const particles=[];
-for(let i=0;i<120;i++){particles.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-0.5)*0.8,vy:(Math.random()-0.5)*0.8,size:2+Math.random()*2});}
-function draw(){ctx.fillStyle="rgba(17,17,17,0.05)";ctx.fillRect(0,0,w,h);ctx.fillStyle="#a8dadc"; particles.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.size,0,Math.PI*2);ctx.fill();}); requestAnimationFrame(draw);}
-draw();
 </script>
+
 </body>
-</html>
+  </html>
